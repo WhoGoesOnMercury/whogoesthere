@@ -20,11 +20,18 @@
       justify-content: space-between;
       align-items: center;
       color: #fff;
+      flex-wrap: wrap; 
     }
 
     header h1 {
       margin: 0;
       font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     nav a {
@@ -52,10 +59,19 @@
       border-radius: 12px;
     }
 
+    #projects {
+      text-align: center;
+    }
+
     #projects img {
-      width: 120px;   
-      height: auto;   
-      margin: 10px;   
+      width: 120px;
+      height: auto;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+
+    #projects img:hover {
+      transform: scale(1.05);
     }
 
     #projects figure {
@@ -71,7 +87,7 @@
     }
 
     #course_work img {
-      width: 650px;
+      width: 90%;
       height: auto;
       margin: 10px;
     }
@@ -116,7 +132,56 @@
       font-weight: bold;
       margin: 0;
     }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header h1 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 10px;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        margin: 20px auto;
+        padding: 0 15px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      #projects img {
+        width: 80px;
+      }
+
+      #course_work img {
+        width: 100%;
+      }
+
+      .profile-img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .name {
+        font-size: 1.4rem;
+      }
+    }
   </style>
+
   <link rel="icon" type="image/x-icon" href="gl.ico">
 </head>
 <body>
@@ -142,7 +207,8 @@
             </a>
           </figure>
           <p>I lead our group's Quality Assurance therefore I was in charge of facilitating the CI/CD pipeline, writing the 
-            automation test scripts using Selenium's Robot Framework, and structuring the YAML/YML. These were done through Github Actions. </p>
+            automation test scripts (Unit and E2E) using Jest and Selenium's Robot Framework respectively, and structuring the YAML/YML for
+            Github Actions.  </p>
         </ul>
     </div>
 
