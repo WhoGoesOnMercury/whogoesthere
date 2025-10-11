@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
+  <title>WhoGoesThere</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,7 +13,6 @@
       color: #2a3b5f;
     }
 
-    /* Navigation */
     header {
       background-color: #53ab82;
       padding: 15px 30px;
@@ -39,7 +38,6 @@
       text-decoration: underline;
     }
 
-    /* Container */
     .container {
       max-width: 900px;
       margin: 40px auto;
@@ -52,6 +50,34 @@
       margin-bottom: 30px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       border-radius: 12px;
+    }
+
+    #projects img {
+      width: 120px;   
+      height: auto;   
+      margin: 10px;   
+    }
+
+    #projects figure {
+      display: inline-block;
+      margin: 10px;
+    }
+
+    #projects figcaption {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 0;
+      text-align: center;
+    }
+
+    #course_work img {
+      width: 650px;
+      height: auto;
+      margin: 10px;
+    }
+
+    #course_work p {
+      text-align: justify;
     }
 
     h2 {
@@ -71,7 +97,6 @@
       color: #14406e;
     }
 
-    /* Profile */
     .profile-container {
       text-align: center;
       margin-bottom: 20px;
@@ -91,87 +116,52 @@
       font-weight: bold;
       margin: 0;
     }
-
-    /* Lists */
-    ul {
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .tag {
-      background-color: #e3f2ec;
-      border-radius: 6px;
-      padding: 3px 8px;
-      font-size: 0.85em;
-      color: #2a3b5f;
-      margin-left: 6px;
-    }
-
-    /* Contact */
-    .contact p {
-      margin: 6px 0;
-    }
   </style>
   <link rel="icon" type="image/x-icon" href="gl.ico">
 </head>
 <body>
-
-  <header>
-    <h1></h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#work">Academic Work</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
   <div class="container">
 
     <div class="card profile-container" id="about">
-      <img src="greenlantern.jpg" alt="Rafael Hugo" class="profile-img" />
-      <p class="name">Rafael Enrico Hugo</p>
-      <p>I’m Rafael Hugo, an undergraduate Computer Science student at <strong>De La Salle University</strong>.
-      I am currently learning to rebuild complex projects in C and Go, trying to focus on lower level programming
+      <img src="media/images/greenlantern.jpg" alt="Rafael Hugo" class="profile-img" />
+      <p class="name">Rafael Hugo</p>
+      <p>I’m <strong> Rafael</strong>, currently an undergraduate Computer Science student at <strong>De La Salle University</strong>.
+      At the moment, I am learning to rebuild software in C and Go, trying to focus on lower level programming
       languages to fully grasp the structure and the minute functions that build the commonly used software of today. </p>
-      <p>Outside academics, I enjoy Science Fiction, Horror media, and Filipino poetry.</p>
+      <p>Outside of academics, I take a liking to Science Fiction, Horror media, and Filipino poetry.</p>
+      <p>You can contact me through my email: <a href="mailto:rafael.whogoesthere@gmail.com">rafael.whogoesthere@gmail.com</a></p>
     </div>
 
-    <div class="card" id="work">
+    <div class="card" id="course_work">
       <h2>Undergraduate Course Work</h2>
-      <ul>
-        <li><strong>A Case Study on Cellular Automata</strong> – Final requirement for ST - Algorithms and its Complexities  
-          <a href="Case Study.pdf" target="_blank" class="tag">View</a></li>
-        <li><strong>Written Report on Access Controls</strong> – Midterm requirement for CS - Secure Web Development  
-          <a href="CSSECDV_WrittenReport.pdf" target="_blank" class="tag">View</a></li>
-      </ul>
+        <ul>
+          <h3><a href="https://ledgerly-ochre.vercel.app/">Ledger.ly</a> (Web application for Advanced Software Engineering Class)</h3>
+          <figure>
+            <a href="https://ledgerly-ochre.vercel.app/" target="_blank">
+              <img src="media/images/ledger.ly.png" alt="ledger.ly">
+            </a>
+          </figure>
+          <p>I lead our group's Quality Assurance therefore I was in charge of facilitating the CI/CD pipeline, writing the 
+            automation test scripts using Selenium's Robot Framework, and structuring the YAML/YML. These were done through Github Actions. </p>
+        </ul>
     </div>
 
     <div class="card" id="projects">
       <h2>Project Bin</h2>
-      <h3>C Projects</h3>
-      <ul>
-        <li><strong>Chess Engine</strong> – <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Chess-engine" class="tag">Repository</a></li>
-        <li><strong>Data Structures and Algorithms in C</strong> – <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Data-structures-and-algorithms" class="tag">Repository</a></li>
-        <li><strong>Monopoly</strong> – <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Monopoly" class="tag">Repository</a></li>
-        <li><strong>Multithreaded Prime Search</strong> – <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Multithreaded-prime-search" class="tag">Repository</a></li>
-      </ul>
+        <figure>
+          <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C" target="_blank">
+            <img src="media/images/C_logo.png" alt="Projects in C">
+          </a>
+          <figcaption>C</figcaption>
+        </figure>
 
-      <h3>Python Projects</h3>
-      <ul>
-        <li><strong>Course Webscraper</strong> – <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/Python/course_webscraper" class="tag">Repository</a></li>
-      </ul>
+        <figure>
+          <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/Python" target="_blank">
+            <img src="media/images/Python_logo.png" alt="Projects in Python">
+          </a>
+          <figcaption>Python</figcaption>
+        </figure>
     </div>
-
-    <div class="card contact" id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:rafael_hugo@dlsu.edu.ph">rafael_hugo@dlsu.edu.ph</a></p>
-    </div>
-    
   </div>
 
 </body>
