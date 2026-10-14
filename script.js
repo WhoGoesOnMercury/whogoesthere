@@ -294,3 +294,25 @@ function closePoem() {
   modal.classList.add('hidden');
   document.body.style.overflow = 'auto';
 }
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  if (themeToggleBtn) themeToggleBtn.textContent = 'Light';
+} else {
+  document.documentElement.setAttribute('data-theme', 'light');
+  if (themeToggleBtn) themeToggleBtn.textContent = 'Dark';
+}
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeToggleBtn.textContent = isDark ? 'Dark' : 'Light';
+  });
+}
