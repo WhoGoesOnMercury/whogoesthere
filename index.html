@@ -3,989 +3,419 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rafael Hugo — WhoGoesThere</title>
+  <title>Rafael Enrico Hugo — Portfolio</title>
   <link rel="icon" type="image/x-icon" href="gl-rayner.ico">
-  <style>
-    @font-face {
-      font-family: 'GeistMono-Regular';
-      src: url('https://intdev-global.s3.us-west-2.amazonaws.com/public/internet-dev/996b00fb-4b7a-403d-8da2-ce2225450681.woff2') format('woff2');
-      font-display: swap;
-    }
-
-    *, *::before, *::after {
-      border: 0;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      vertical-align: baseline;
-    }
-
-    html, body {
-      --ansi-0-black: #000000;
-      --ansi-15-white: #ffffff;
-      --ansi-13-fuchsia: #ff00ff;
-      --ansi-232-gray-3: #080808;
-      --ansi-235-gray-15: #262626;
-      --ansi-237-gray-23: #3a3a3a;
-      --ansi-240-gray-35: #585858;
-      --ansi-242-gray-42: #6c6c6c;
-      --ansi-245-gray-54: #8a8a8a;
-      --ansi-248-gray-66: #a8a8a8;
-      --ansi-251-gray-78: #c6c6c6;
-      --ansi-254-gray-89: #e4e4e4;
-      --ansi-255-gray-93: #eeeeee;
-
-      --color-black: var(--ansi-0-black);
-      --color-white: var(--ansi-15-white);
-      --color-gray-54: var(--ansi-245-gray-54);
-      --color-gray-42: var(--ansi-242-gray-42);
-      --color-gray-23: var(--ansi-237-gray-23);
-      --color-gray-15: var(--ansi-235-gray-15);
-      --color-gray-23-border-alpha: rgba(58, 58, 58, 0.3);
-
-      --font-family-mono: 'GeistMono-Regular', Consolas, monaco, ui-monospace, monospace;
-      --font-size: 15px;
-
-      background: var(--theme-background);
-      color: var(--theme-text);
-      font-family: var(--font-family-mono);
-      line-height: 1.5;
-      font-size: var(--font-size);
-      font-optical-sizing: auto;
-      text-rendering: geometricPrecision;
-      font-weight: 400;
-      font-variant-numeric: tabular-nums lining-nums;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body.theme-dark {
-      --theme-background: var(--color-black);
-      --theme-text: var(--color-white);
-      --theme-border: var(--color-gray-23);
-      --theme-border-subdued: var(--color-gray-23-border-alpha);
-      --theme-focused-foreground: var(--ansi-13-fuchsia);
-      --theme-window-background: var(--color-gray-23);
-      --theme-window-shadow: var(--color-gray-15);
-      --theme-button-foreground: var(--color-gray-15);
-      --theme-button-background: var(--color-gray-23);
-      --theme-label: var(--color-gray-54);
-      --theme-muted: var(--color-gray-42);
-    }
-
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--theme-border); border-radius: 3px; }
-    ::selection { background: var(--theme-text); color: var(--theme-background); }
-
-    a {
-      color: var(--theme-text);
-      text-decoration: none;
-      background: transparent;
-    }
-    a:hover { color: var(--theme-focused-foreground); }
-
-    /* Window */
-    .window {
-      display: block;
-      background: var(--theme-window-background);
-      box-shadow: 1ch 1.5rem 0 0 var(--theme-window-shadow);
-      max-width: 850px;
-      margin: 40px auto;
-      min-width: min(28ch, 100%);
-    }
-
-    /* Navigation */
-    .navigation {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--theme-border);
-    }
-    .nav-logo {
-      flex-shrink: 0;
-      padding: 0 1.5ch;
-      display: inline-flex;
-      align-items: center;
-      color: var(--theme-text);
-      background: var(--theme-border);
-      text-decoration: none;
-      font-family: var(--font-family-mono);
-      cursor: pointer;
-      height: 2.5rem;
-    }
-    .nav-logo:hover { background: var(--theme-focused-foreground); color: var(--theme-text); }
-    .nav-center {
-      min-width: 10%;
-      width: 100%;
-      text-align: center;
-      color: var(--theme-label);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .nav-right {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    /* Content */
-    .content {
-      padding: 2.5rem 2.5rem 2rem;
-    }
-
-    /* Hero */
-    .hero {
-      display: flex;
-      align-items: flex-start;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-    }
-    .hero-img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow:
-        inset 0 0 0 2px var(--theme-focused-foreground),
-        0 0 0 4px var(--theme-border);
-      flex-shrink: 0;
-    }
-    .hero-text { flex: 1; min-width: 0; }
-    .hero-name {
-      font-size: 1.8rem;
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 0.3ch;
-    }
-    .hero-location {
-      font-size: 12px;
-      color: var(--theme-label);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1ch;
-    }
-    .hero-bio {
-      color: var(--theme-label);
-      font-size: 14px;
-      margin-bottom: 1.5ch;
-      line-height: 1.6;
-    }
-    .hero-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .hero-email {
-      display: inline-flex;
-      align-items: center;
-      font-size: 13px;
-      color: var(--theme-label);
-      gap: 0.5ch;
-    }
-    .hero-email::before {
-      content: '>';
-      color: var(--theme-focused-foreground);
-    }
-
-    /* Section labels */
-    .section-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--theme-label);
-      margin-bottom: 0.75rem;
-    }
-
-    /* ActionButton */
-    .action-button {
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      outline: 0;
-      border: 0;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: var(--font-family-mono);
-      font-size: 13px;
-      flex-shrink: 0;
-      text-decoration: none;
-      color: var(--theme-text);
-    }
-    .action-button:hover { background: transparent; }
-    .action-button:hover .ab-hotkey { background: var(--theme-focused-foreground); }
-    .action-button:hover .ab-content {
-      box-shadow: inset 0 0 0 1px var(--theme-focused-foreground);
-      color: var(--theme-text);
-    }
-    .action-button:active .ab-hotkey { background: var(--theme-focused-foreground); }
-    .ab-hotkey {
-      background: var(--theme-button-foreground);
-      color: var(--theme-text);
-      flex-shrink: 0;
-      padding: 0.15em 0.6ch;
-      user-select: none;
-      font-size: 12px;
-    }
-    .ab-content {
-      background: var(--theme-button-background);
-      box-shadow: inset 0 0 0 1px var(--theme-button-foreground);
-      flex-shrink: 0;
-      padding: 0.15em 1ch;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      user-select: none;
-      transition: box-shadow 0.2s ease, color 0.2s ease;
-    }
-
-    /* Tab Switcher Styles */
-    .tab-bar {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--theme-border);
-      padding-bottom: 0.5rem;
-    }
-    .tab-btn {
-      background: var(--theme-button-background);
-      color: var(--theme-label);
-      border: 1px solid var(--theme-border);
-      padding: 0.4rem 1ch;
-      font-family: var(--font-family-mono);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .tab-btn:hover {
-      color: var(--theme-text);
-      border-color: var(--theme-focused-foreground);
-    }
-    .tab-btn.active {
-      background: var(--theme-focused-foreground);
-      color: var(--ansi-0-black);
-      border-color: var(--theme-focused-foreground);
-      font-weight: bold;
-    }
-
-    /* Tab Content View Controller */
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-
-    /* Card */
-    .card {
-      position: relative;
-      display: block;
-      margin-bottom: 2.5rem;
-    }
-    .card-children {
-      box-shadow:
-        inset 2px 0 0 0 var(--theme-text),
-        inset -2px 0 0 0 var(--theme-text),
-        inset 0 -2px 0 0 var(--theme-text);
-      padding: 1.5rem 2ch 1.5rem;
-    }
-    .card-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-    }
-    .card-header-left {
-      min-width: 8%;
-      width: 100%;
-      box-shadow:
-        inset 2px 0 0 0 var(--theme-text),
-        inset 0 2px 0 0 var(--theme-text);
-      padding: 0.4rem 2ch 0 1ch;
-    }
-    .card-header-right {
-      min-width: 8%;
-      width: 100%;
-      box-shadow:
-        inset -2px 0 0 0 var(--theme-text),
-        inset 0 2px 0 0 var(--theme-text);
-      padding: 0.4rem 2ch 0 1ch;
-    }
-    .card-title {
-      flex-shrink: 0;
-      padding: 0 1ch;
-      font-size: var(--font-size);
-      font-weight: 400;
-    }
-
-    /* Projects */
-    .project { margin-bottom: 2rem; }
-    .project:last-child { margin-bottom: 0; }
-    .project-heading {
-      display: flex;
-      align-items: center;
-      gap: 1ch;
-      margin-bottom: 0.5ch;
-    }
-    .project-meta {
-      font-size: 12px;
-      color: var(--theme-label);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1ch;
-    }
-    .project-media {
-      display: block;
-      width: 100%;
-      height: auto;
-      margin: 1ch 0;
-      box-shadow: inset 0 0 0 1px var(--theme-border);
-      transition: box-shadow 0.2s ease;
-    }
-    .project-media:hover {
-      box-shadow: inset 0 0 0 1px var(--theme-focused-foreground);
-    }
-    .project-media-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 200px;
-      margin: 1ch 0;
-      box-shadow: inset 0 0 0 1px var(--theme-border);
-      color: var(--theme-muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .project-desc {
-      color: var(--theme-label);
-      font-size: 14px;
-      line-height: 1.65;
-      margin-top: 1ch;
-    }
-    .project-desc a {
-      color: var(--theme-text);
-      text-decoration: underline;
-      text-decoration-color: var(--theme-border);
-      text-underline-offset: 2px;
-    }
-    .project-desc a:hover {
-      color: var(--theme-focused-foreground);
-      text-decoration-color: var(--theme-focused-foreground);
-    }
-    .project-badge {
-      display: inline-flex;
-      align-items: center;
-      font-size: 11px;
-      padding: 0.25em 0.75ch;
-      background: var(--theme-focused-foreground);
-      color: var(--theme-black);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 400;
-      margin-bottom: 0.5ch;
-    }
-    .project-divider {
-      border: 0;
-      border-top: 1px solid var(--theme-border);
-      margin: 2rem 0;
-    }
-    figure {
-      margin: 1ch 0;
-      padding: 0;
-      display: block;
-      text-align: center;
-    }
-
-    /* Terminal Component Styles */
-    .terminal-container {
-      background: #000000;
-      border: 1px solid var(--theme-border);
-      font-family: var(--font-family-mono);
-      font-size: 13px;
-      color: #e4e4e4;
-      padding: 1rem;
-      min-height: 380px;
-      max-height: 550px;
-      overflow-y: auto;
-      cursor: text;
-    }
-    .term-line {
-      margin-bottom: 0.5rem;
-      line-height: 1.5;
-      word-break: break-word;
-    }
-    .term-prompt {
-      color: var(--theme-focused-foreground);
-      font-weight: bold;
-    }
-    .term-dir {
-      color: #8a8a8a;
-    }
-    .term-cmd-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5ch;
-    }
-    .term-input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #ffffff;
-      font-family: inherit;
-      font-size: inherit;
-      flex: 1;
-      width: 100%;
-      caret-color: var(--theme-focused-foreground);
-    }
-    .term-folder {
-      color: #ffffff;
-      font-weight: bold;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .term-folder:hover {
-      color: var(--theme-focused-foreground);
-    }
-    .term-dim {
-      color: var(--theme-label);
-    }
-    .term-link {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-    .term-link:hover {
-      color: var(--theme-focused-foreground);
-    }
-    .term-quick-btns {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.75rem;
-    }
-    .term-quick-btn {
-      background: var(--theme-border);
-      color: var(--theme-text);
-      padding: 0.2rem 0.6rem;
-      font-size: 11px;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 2px;
-      user-select: none;
-    }
-    .term-quick-btn:hover {
-      background: var(--theme-focused-foreground);
-      color: #000;
-    }
-
-    /* Footer */
-    .footer {
-      border-top: 1px solid var(--theme-border);
-      padding-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .footer-right {
-      font-size: 12px;
-      color: var(--theme-label);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* Responsive */
-    @media (max-width: 700px) {
-      .window { margin: 0; box-shadow: none; }
-      .content { padding: 2rem 1.25rem 1.5rem; }
-      .hero {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 1.25rem;
-      }
-      .hero-links { justify-content: center; }
-      .footer {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-      .nav-center { font-size: 10px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="theme-dark">
+<body>
 
-  <div class="window">
-
-    <nav class="navigation">
-      <a href="#about" class="nav-logo">&#9670;</a>
-      <section class="nav-center">WhoGoesThere</section>
-      <div class="nav-right">
-        <a href="https://www.linkedin.com/in/rafael-whogoesthere/" target="_blank" rel="noopener noreferrer" class="nav-logo">&#9741;</a>
-        <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer" class="nav-logo">&#8599;</a>
+  <div class="container">
+  
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="media/images/gl-rayner.jpg" alt="Rafael Enrico Hugo" class="avatar" />
+        <h1 class="name">Rafael Enrico Hugo</h1>
+        <p class="title">Undergraduate Researcher</p>
+        <p class="affiliation">De La Salle University Manila<br>Human-X Interactions Lab</p>
+        <p class="location">Metro Manila, Philippines</p>
+        <p class="email-text">rafael.whogoesthere@gmail.com</p>
       </div>
-    </nav>
 
-    <div class="content">
+      <p class="bio" id="sidebar-bio">
+        Software Engineer and Researcher focusing on Human-Computer Interaction, Augmented Reality, 
+        and Software Development—with additional work in academic and creative writing.
+      </p>
 
-      <!-- Hero -->
-      <section class="hero" id="about">
-        <img src="media/images/gl-rayner.jpg" alt="Rafael Enrico Hugo" class="hero-img" />
-        <div class="hero-text">
-          <h1 class="hero-name">Rafael Enrico Hugo</h1>
-          <div class="hero-location">Metro Manila, Philippines</div>
-          <p class="hero-bio">Computer Science student majoring in Software Technology at De La Salle University. Undergraduate researcher at the Human-X Interactions Lab. </p>
-          <div class="hero-links">
-            <span class="hero-email">rafael_hugo@dlsu.edu.ph</span>
-            <a href="https://www.linkedin.com/in/rafael-whogoesthere/" target="_blank" rel="noopener noreferrer" class="action-button">
-              <span class="ab-hotkey">&#9741;</span>
-              <span class="ab-content">LinkedIn</span>
-            </a>
-            <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer" class="action-button">
-              <span class="ab-hotkey">&#8984;</span>
-              <span class="ab-content">GitHub</span>
-            </a>
-          </div>
+      <div class="links">
+        <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer" class="link-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/rafael-whogoesthere/" target="_blank" rel="noopener noreferrer" class="link-btn">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=CzJBwgUAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="link-btn">Google Scholar</a>
+      </div>
+
+      <nav class="nav-menu" id="nav-swe">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications & Honors</a>
+        <a href="#skills">Skills</a>
+      </nav>
+
+      <nav class="nav-menu hidden" id="nav-creative">
+        <a href="#about">About</a>
+        <a href="#events">Events</a>
+        <a href="#written-works">Written Works</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <section id="about" class="section-about">
+        <h2>About</h2>
+        <div class="tab-container">
+          <button class="tab-button active" id="tab-swe-btn" onclick="switchView('swe')">
+            [ As a Software Engineer ]
+          </button>
+          <button class="tab-button" id="tab-creative-btn" onclick="switchView('creative')">
+            [ As a Writer and Creative ]
+          </button>
         </div>
+        <p id="about-text" class="about-description">
+          I am a Computer Science student at De La Salle University specializing in Human-Computer Interactions, artificial intelligence, and software engineering. 
+          As a researcher at the <strong>Human-X Interactions Lab</strong>, I co-develop augmented reality training systems 
+          and explore interactive interface design. My work spans backend development, software quality assurance, 
+          and applied AI—including co-authoring <strong>LasallEats</strong>, presented and published at the <strong>IEEE FMLDS 2025</strong>.
+        </p>
       </section>
 
-      <!-- 01 — Projects Section with View Switcher -->
-      <div class="section-label">01 &mdash; projects</div>
+      <!-- VIEW 1: SOFTWARE ENGINEER PORTFOLIO -->
+      <div id="view-swe" class="view-pane active">
+        <section id="experience" class="section">
+          <h2>Experience</h2>
 
-      <!-- View Switcher Tabs -->
-      <div class="tab-bar">
-        <button class="tab-btn active" id="tab-btn-gui" onclick="switchTab('gui')">[ GUI View ]</button>
-        <button class="tab-btn" id="tab-btn-terminal" onclick="switchTab('terminal')">[ Terminal View ]</button>
+          <div class="timeline-item">
+            <div class="time-meta">Sep 2026 &ndash; Present</div>
+            <div class="time-body">
+              <h3>Quality Assurance Intern &mdash; <span>Dayou</span></h3>
+              <p class="time-sub">Shaw Boulevard, Pasig City</p>
+              <!-- 
+              <ul>
+                <li></li>
+              </ul>
+              -->
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-meta">Oct 2025 &ndash; Present</div>
+            <div class="time-body">
+              <h3>Undergraduate Researcher &mdash; <span>Human-X Interactions Lab</span></h3>
+              <p class="time-sub">De La Salle University Manila</p>
+              <!-- 
+              <ul>
+                <li></li>
+              </ul>
+              -->
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-meta">May 2025 &ndash; Aug 2025</div>
+            <div class="time-body">
+              <h3>Lead Quality Assurance &mdash; <span>Ledger.ly</span></h3>
+              <p class="time-sub">De La Salle University Manila</p>
+              <!-- 
+              <ul>
+                <li></li>
+              </ul>
+            -->
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="section">
+          <h2>Selected Projects</h2>
+
+          <!-- LineAR -->
+          <div class="project-card">
+            <div class="project-media-wrapper">
+              <div class="placeholder-media">LineAR Preview</div>
+            </div>
+            <div class="project-info">
+              <div class="project-header">
+                <h3 class="project-title">LineAR</h3>
+                <span class="badge">Undergraduate Thesis</span>
+              </div>
+              <p class="project-tags">Python, Augmented Reality, Computer Vision, HCI, OpenCV, OCR</p>
+              <p class="project-desc">
+                Developed an interactive augmented reality training system for guided linear algebra learning using augmented reality. 
+                Designed projection mapping and paper tracking using OpenCV and OCR libraries under the Human-X Interactions Lab.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer">Code &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- LasallEats -->
+          <div class="project-card">
+            <div class="project-media-wrapper">
+              <img src="media/images/Lasalleats.png" alt="LasallEats" class="project-img" />
+            </div>
+            <div class="project-info">
+              <div class="project-header">
+                <h3 class="project-title">LasallEats</h3>
+                <span class="badge">IEEE Publication</span>
+              </div>
+              <p class="project-tags">Python, Gemini 2.5 Pro, Artificial Intelligence, Prompt Engineering</p>
+              <p class="project-desc">
+                Developed an empathic restaurant recommendation system for DLSU Manila students utilizing Gemini 2.5 Pro with custom prompt engineering relative to user context. 
+                Makes use of randomly chosen and set images to extract a user's emotions to cater recommendations.
+                Published and presented at IEEE FMLDS 2025.
+              </p>
+              <div class="project-links">
+                <a href="https://www.researchgate.net/publication/403145731_LasallEats_A_Restaurant_Recommendation_System_Mobile_App_for_DLSU_Manila_Students" target="_blank" rel="noopener noreferrer">ResearchGate &rarr;</a> &nbsp;|&nbsp;
+                <a href="https://scholar.google.com/citations?user=CzJBwgUAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Distributed System -->
+          <div class="project-card">
+            <div class="project-media-wrapper">
+              <img src="media/images/Fault_tolerance.png" alt="Fault-Tolerant Distributed System" class="project-img" />
+            </div>
+            <div class="project-info">
+              <div class="project-header">
+                <h3 class="project-title">Fault-Tolerant Distributed System</h3>
+                <span class="badge">Academic Project</span>
+              </div>
+              <p class="project-tags">Go, gRPC, Protocol Buffers, Git, Docker</p>
+              <p class="project-desc">
+                Implemented a distributed system in Go utilizing gRPC for inter-node communication. 
+                Engineered fault-tolerance mechanisms to maintain availability and state consistency during node failures using Protocol Buffers. 
+                Docker was utilized to simulate component unavailability. 
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Algorithms in C -->
+          <div class="project-card">
+            <div class="project-media-wrapper">
+              <video autoplay muted loop playsinline class="project-img">
+                <source src="media/videos/C_algo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="project-info">
+              <div class="project-header">
+                <h3 class="project-title">Algorithms & Data Structures in C</h3>
+                <span class="badge">Personal Project</span>
+              </div>
+              <p class="project-tags">C, Multi-threading, Sorting Algorithms, Data Structures</p>
+              <p class="project-desc">
+                Implemented fundamental data structures and sorting algorithms from scratch in low-level C with multi-threading and documented analysis.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Data-structures-and-algorithms/Sorting-algorithms" target="_blank" rel="noopener noreferrer">Code &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Publications & Honors -->
+        <section id="publications" class="section">
+          <h2>Publications & Honors</h2>
+          <ul class="pub-list">
+            <li>
+              <span class="pub-date">March 2026</span>
+              <div class="pub-text">
+                <strong>Career Service Professional Examination Passer</strong> &mdash; Passed with a rating of <strong>92.74%</strong>, 
+              </div>
+            </li>
+            <li>
+              <span class="pub-date">November 2025</span>
+              <div class="pub-text">
+                <strong>IEEE FMLDS 2025 Paper Presenter & Author</strong> &mdash; Presented <em>"LasallEats: A Restaurant Recommendation System Mobile App for DLSU Manila Students"</em> at the IEEE International Conference on Future Machine Learning and Data Science.
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Technical Skills -->
+        <section id="skills" class="section">
+          <h2>Technical Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h4>Languages</h4>
+              <p>Go, Python, JavaScript, TypeScript, C, SQL</p>
+            </div>
+            <div class="skill-group">
+              <h4>Frameworks & Protocols</h4>
+              <p>gRPC, Protocol Buffers, Express.js, Node.js, Flask</p>
+            </div>
+            <div class="skill-group">
+              <h4>Testing & QA</h4>
+              <p>Jest, Selenium, Playwright, Vitest, Automated Testing</p>
+            </div>
+            <div class="skill-group">
+              <h4>DevOps & Tools</h4>
+              <p>Git, Docker, GitHub Actions, AWS, MySQL, MongoDB, SQLite, Jira, Zephyr</p>
+            </div>
+          </div>
+        </section>
+
       </div>
 
-      <!-- TAB 1: Non-Terminal (Standard GUI View) -->
-      <div id="view-gui" class="tab-content active">
-        <article class="card">
-          <header class="card-header">
-            <div class="card-header-left"></div>
-            <h2 class="card-title">PROJECTS</h2>
-            <div class="card-header-right"></div>
-          </header>
-          <section class="card-children">
+      <div id="view-creative" class="view-pane">
+        <section id="events" class="section">
+          <h2>Events</h2>
 
-            <!-- LineAR -->
-            <div class="project" id="proj-LineAR">
-              <div class="project-heading">
-                <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer" class="action-button">
-                  <span class="ab-hotkey">&#9654;</span>
-                  <span class="ab-content">LineAR</span>
-                </a>
-              </div>
-              <span class="project-badge">Undergraduate Thesis</span>
-              <div class="project-media-placeholder">Screenshot coming soon</div>
-              <p class="project-desc">
-                Developed an interactive computer vision system for guided linear algebra learning
-                using augmented reality. Designed projection mapping and paper tracking using OpenCV.
-                Thesis conducted under the Human-X Interactions Lab.
+          <div class="event-card">
+            <div class="event-media-large">
+              <img src="media/images/Grand_Folio_Launch_2025.jpg" alt="Grand Folio Launch 2025" class="event-img" />
+            </div>
+            <div class="event-info">
+              <span class="pub-date">July 2025</span>
+              <h3 class="event-title">Grand Folio Launch 2025</h3>
+              <p class="event-desc">I, together with two former poetry editors, 
+                were called to the stage for a short and impromptu introductory segment to the poetry section. 
+                Seen in this photograph are published writers Rigel Portales and Sejo Esguerra. 
+                We three took turns in saying a word in hopes of forming a coherent sentence.
               </p>
             </div>
+            <div class="event-links">
+              <a href="https://www.facebook.com/share/p/1V3fw9vXDP/" target="_blank" rel="noopener noreferrer" class="link-btn">Media Coverage ↗</a>
+            </div>
+          </div>
 
-            <hr class="project-divider">
-
-            <!-- LasallEats -->
-            <div class="project" id="proj-LasallEats">
-              <div class="project-heading">
-                <a href="https://www.researchgate.net/publication/403145731_LasallEats_A_Restaurant_Recommendation_System_Mobile_App_for_DLSU_Manila_Students" target="_blank" rel="noopener noreferrer" class="action-button">
-                  <span class="ab-hotkey">&#9654;</span>
-                  <span class="ab-content">LasallEats</span>
-                </a>
-              </div>
-              <span class="project-badge">IEEE Publication</span>
-              <figure>
-                <a href="https://www.researchgate.net/publication/403145731_LasallEats_A_Restaurant_Recommendation_System_Mobile_App_for_DLSU_Manila_Students" target="_blank" rel="noopener noreferrer">
-                  <img src="media/images/Lasalleats.png" alt="LasallEats" class="project-media" />
-                </a>
-              </figure>
-              <p class="project-desc">
-                Developed a restaurant recommendation system using Python and Gemini 2.5 Pro.
-                Published and presented at the IEEE International Conference on Future Machine
-                Learning and Data Science.
-                <a href="https://www.researchgate.net/publication/403145731_LasallEats_A_Restaurant_Recommendation_System_Mobile_App_for_DLSU_Manila_Students" target="_blank" rel="noopener noreferrer">Publication &#8599;</a>
+          <div class="event-card">
+            <div class="event-media-large">
+              <img src="media/images/LITAW-VISAW-2025.jpg" alt="LITAW-VISAW-2025" class="event-img" />
+            </div>
+            <div class="event-info">
+              <span class="pub-date">April 2025</span>
+              <h3 class="event-title">DLSU Annual Awards for Literature and Visual Arts (LITAW-VISAW 2025)</h3>
+              <p class="event-desc">As the poetry editor, I held an introductory monologue prior to the presentation of winners
+                for the Poetry and Tula categories. Here, I had written a short rhetoric on the weight of interpretation and 
+                reading comprehension on poetry.
               </p>
             </div>
-
-            <hr class="project-divider">
-
-            <!-- Ledger.ly -->
-            <div class="project" id="proj-Ledger.ly">
-              <div class="project-heading">
-                <a href="https://ledgerly-ochre.vercel.app/" target="_blank" rel="noopener noreferrer" class="action-button">
-                  <span class="ab-hotkey">&#9654;</span>
-                  <span class="ab-content">Ledger.ly</span>
-                </a>
-              </div>
-              <span class="project-badge">Software QA</span>
-              <figure>
-                <a href="https://ledgerly-ochre.vercel.app/" target="_blank" rel="noopener noreferrer">
-                  <img src="media/images/ledger.ly.png" alt="Ledger.ly" class="project-media" />
-                </a>
-              </figure>
-              <p class="project-desc">
-                Led Quality Assurance for an agile software development project.
-                Developed automated testing using Jest and Selenium. Configured GitHub Actions
-                for CI/CD testing.
-              </p>
+            <div class="event-links">
+              <a href="https://www.facebook.com/share/p/14p4Jq3yh4Q/" target="_blank" rel="noopener noreferrer" class="link-btn">Media Coverage ↗</a>
             </div>
+          </div>
+        </section>
 
-            <hr class="project-divider">
-
-            <!-- Distributed System -->
-            <div class="project" id="proj-Distributed-System">
-              <div class="project-heading">
-                <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer" class="action-button">
-                  <span class="ab-hotkey">&#9654;</span>
-                  <span class="ab-content">Distributed System</span>
-                </a>
+        <section id="written-works" class="section">
+          <h2>Selected Written Works</h2>
+          <ul class="pub-list">
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">Sep 17, 2026</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">English</span>
               </div>
-              <span class="project-badge">Academic Project</span>
-              <a target="_blank" rel="noopener noreferrer">
-                <img src="media/images/Fault_tolerance.png" alt="fault_tolerance" class="project-media" />
-              </a>
-              <p class="project-desc">
-                Implemented a fault-tolerant distributed system in Go utilizing gRPC for efficient
-                inter-node RPC communication. Engineered fault-tolerance mechanisms to maintain
-                system availability and state consistency during node failures. Designed service
-                interfaces using Protocol Buffers.
-              </p>
-            </div>
-
-            <hr class="project-divider">
-
-            <!-- Algorithms in C -->
-            <div class="project" id="proj-Algorithms-in-C">
-              <div class="project-heading">
-                <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Data-structures-and-algorithms/Sorting-algorithms" target="_blank" rel="noopener noreferrer" class="action-button">
-                  <span class="ab-hotkey">&#9654;</span>
-                  <span class="ab-content">Algorithms and Data Structures in C</span>
-                </a>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('cognitive-surrender')"><strong>Cognitive Surrender</strong></a>
               </div>
-              <span class="project-badge">Personal Project</span>
-              <figure>
-                <video autoplay muted loop playsinline class="project-media">
-                  <source src="media/videos/C_algo.mp4" type="video/mp4">
-                </video>
-              </figure>
-              <p class="project-desc">
-                Implemented sorting algorithms and fundamental data structures from scratch.
-                Documented algorithm analysis and implementation details.
-              </p>
-            </div>
+            </li>
 
-          </section>
-        </article>
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">Aug 30, 2026</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">English</span>
+              </div>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('what-you-said-on-the-beach')"><strong>What He Said On The Beach</strong></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">May 31, 2026</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">Tagalog</span>
+              </div>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('huling-minuto')"><strong>Huling Minuto</strong></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">Jan 18, 2026</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">English</span>
+              </div>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('one-day-we-will-never-say-goodbye')"><strong>One Day We Will Never Say Goodbye</strong></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">Dec 27, 2025</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">Tagalog</span>
+              </div>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('sa-las-pinas-ako-natutong-magsulat-ng-tula')"><strong>Sa Las Piñas ako natutong magsulat ng tula</strong></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">Nov 2, 2025</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">Tagalog</span>
+              </div>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('kagptan')"><strong>kaGPTan</strong></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">Jul 27, 2025</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">Tagalog</span>
+              </div>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('ai-na-ko')"><strong>AI (Hay) na'ko</strong></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pub-meta">
+                <span class="pub-date">Jun 28, 2025</span>
+                <span class="pub-tag">Poetry</span>
+                <span class="pub-lang">English</span>
+              </div>
+              <div class="pub-text">
+                <a href="javascript:void(0)" onclick="openPoem('the-movie-in-my-mind')"><strong>The Movie in My Mind</strong></a>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <div id="poem-modal" class="poem-modal hidden">
+          <div class="poem-modal-content">
+            <button class="close-poem-btn" onclick="closePoem()">&larr; Back to Portfolio</button>
+            
+            <div id="poem-body" class="poem-body">
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Blog Area 
+        <section id="blog-area" class="section">
+          <h2>Blog & Essays</h2>
+          <p class="section-intro">          </p>
+
+          <div class="blog-list">
+            <article class="blog-item">
+              <span class="pub-date">         </span>
+              <h3 class="blog-title"><a href="#">           </a></h3>
+              <p class="blog-excerpt">          </p>
+            </article>
+
+          </div>
+        </section>
+        -->
+
       </div>
 
-      <!-- TAB 2: Terminal View -->
-      <div id="view-terminal" class="tab-content">
-        <article class="card">
-          <header class="card-header">
-            <div class="card-header-left"></div>
-            <h2 class="card-title">PROJECT TERMINAL</h2>
-            <div class="card-header-right"></div>
-          </header>
-          <section class="card-children">
-            <div class="terminal-container" id="terminal" onclick="document.getElementById('term-input-field').focus()">
-              <div id="term-output"></div>
-              <div class="term-cmd-row">
-                <span class="term-prompt">whogoesthere@dlsu:<span id="term-pwd">~/projects</span>$&nbsp;</span>
-                <input type="text" id="term-input-field" class="term-input" autocomplete="off" spellcheck="false" />
-              </div>
-            </div>
-          </section>
-        </article>
-      </div>
-
-      <!-- Footer -->
       <footer class="footer">
-        <a href="#about" class="action-button">
-          <span class="ab-hotkey">&#9167;</span>
-          <span class="ab-content">Back to top</span>
-        </a>
-        <div class="footer-right">Rafael Enrico Hugo &copy; 2026</div>
+        <p>&copy; 2026 Rafael Enrico Hugo.</p>
       </footer>
 
-    </div>
+    </main>
+
   </div>
 
-  <script>
-    // Tab switching functionality
-    function switchTab(viewName) {
-      const guiTab = document.getElementById('view-gui');
-      const terminalTab = document.getElementById('view-terminal');
-      const btnGui = document.getElementById('tab-btn-gui');
-      const btnTerminal = document.getElementById('tab-btn-terminal');
-
-      if (viewName === 'terminal') {
-        guiTab.classList.remove('active');
-        terminalTab.classList.add('active');
-        btnGui.classList.remove('active');
-        btnTerminal.classList.add('active');
-        // Auto-focus terminal input upon switching
-        setTimeout(() => {
-          document.getElementById('term-input-field').focus();
-        }, 50);
-      } else {
-        terminalTab.classList.remove('active');
-        guiTab.classList.add('active');
-        btnTerminal.classList.remove('active');
-        btnGui.classList.add('active');
-      }
-    }
-
-    // Terminal Engine Logic
-    (function() {
-      // Portfolio Projects Data[cite: 1]
-      const projectsData = {
-        "LineAR": {
-          badge: "Undergraduate Thesis",
-          desc: "Developed an interactive computer vision system for guided linear algebra learning using augmented reality. Designed projection mapping and paper tracking using OpenCV. Thesis conducted under the Human-X Interactions Lab.",
-          link: "https://github.com/WhoGoesOnMercury",
-          type: "github"
-        },
-        "LasallEats": {
-          badge: "IEEE Publication",
-          desc: "Developed a restaurant recommendation system using Python and Gemini 2.5 Pro. Published and presented at the IEEE International Conference on Future Machine Learning and Data Science.",
-          image: "media/images/Lasalleats.png",
-          link: "https://www.researchgate.net/publication/403145731_LasallEats_A_Restaurant_Recommendation_System_Mobile_App_for_DLSU_Manila_Students",
-          type: "publication"
-        },
-        "Ledger.ly": {
-          badge: "Software QA",
-          desc: "Led Quality Assurance for an agile software development project. Developed automated testing using Jest and Selenium. Configured GitHub Actions for CI/CD testing.",
-          image: "media/images/ledger.ly.png",
-          link: "https://ledgerly-ochre.vercel.app/",
-          type: "live"
-        },
-        "Distributed-System": {
-          badge: "Academic Project",
-          desc: "Implemented a fault-tolerant distributed system in Go utilizing gRPC for efficient inter-node RPC communication. Engineered fault-tolerance mechanisms to maintain system availability and state consistency during node failures.",
-          image: "media/images/Fault_tolerance.png",
-          link: "https://github.com/WhoGoesOnMercury",
-          type: "github"
-        },
-        "Algorithms-in-C": {
-          badge: "Personal Project",
-          desc: "Implemented sorting algorithms and fundamental data structures from scratch. Documented algorithm analysis and implementation details.",
-          video: "media/videos/C_algo.mp4",
-          link: "https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Data-structures-and-algorithms/Sorting-algorithms",
-          type: "github"
-        }
-      };
-
-      const projectKeys = Object.keys(projectsData);
-      let currentDir = "root"; // "root" or project key name
-      const history = [];
-      let historyIdx = -1;
-
-      const outputEl = document.getElementById("term-output");
-      const inputEl = document.getElementById("term-input-field");
-      const pwdEl = document.getElementById("term-pwd");
-      const terminalEl = document.getElementById("terminal");
-
-      function scrollToBottom() {
-        terminalEl.scrollTop = terminalEl.scrollHeight;
-      }
-
-      function updatePrompt() {
-        pwdEl.textContent = currentDir === "root" ? "~/projects" : `~/projects/${currentDir}`;
-      }
-
-      function appendLine(htmlContent) {
-        const line = document.createElement("div");
-        line.className = "term-line";
-        line.innerHTML = htmlContent;
-        outputEl.appendChild(line);
-        scrollToBottom();
-      }
-
-      function renderWelcome() {
-        appendLine(`<span class="term-dim">Welcome to Interactive Terminal v1.0.0</span>`);
-        appendLine(`Type <span style="color:#ff00ff;">ls</span> to list project directories, or <span style="color:#ff00ff;">cd &lt;project&gt;</span> to view a project.`);
-        appendLine(`Type <span style="color:#ff00ff;">help</span> for available commands.`);
-        appendLine(`---`);
-      }
-
-      // Quick CD function for folder click
-      window.termCd = function(target) {
-        processCommand(`cd ${target}`);
-      };
-
-      window.termOpenLink = function(url) {
-        window.open(url, "_blank");
-      };
-
-      function processCommand(cmdStr) {
-        const trimmed = cmdStr.trim();
-        if (!trimmed) return;
-
-        // Print command executed
-        const promptPath = currentDir === "root" ? "~/projects" : `~/projects/${currentDir}`;
-        appendLine(`<span class="term-prompt">whogoesthere@dlsu:<span class="term-dir">${promptPath}</span>$&nbsp;</span>${trimmed}`);
-
-        const parts = trimmed.split(/\s+/);
-        const cmd = parts[0].toLowerCase();
-        const arg = parts.slice(1).join(" ");
-
-        switch (cmd) {
-          case "help":
-            appendLine(`Available commands:`);
-            appendLine(`  <span style="color:#ff00ff;">ls</span>                 List all project directories or directory contents`);
-            appendLine(`  <span style="color:#ff00ff;">cd &lt;dir&gt;</span>           Navigate into a project directory (or 'cd ..' / 'cd /' to go back)`);
-            appendLine(`  <span style="color:#ff00ff;">cat README.md</span>      Display detailed project info`);
-            appendLine(`  <span style="color:#ff00ff;">open</span>               Open current project external URL in new tab`);
-            appendLine(`  <span style="color:#ff00ff;">clear</span>              Clear terminal screen`);
-            appendLine(`  <span style="color:#ff00ff;">pwd</span>                Print current working directory`);
-            break;
-
-          case "ls":
-            if (currentDir === "root") {
-              appendLine(`drwxr-xr-x 5 rafael staff`);
-              let listHtml = `<div style="margin-top:0.3rem;">`;
-              projectKeys.forEach(p => {
-                listHtml += `<span class="term-folder" onclick="termCd('${p}')">${p}/</span>&nbsp;&nbsp;&nbsp;&nbsp;`;
-              });
-              listHtml += `</div>`;
-              appendLine(listHtml);
-            } else {
-              appendLine(`-rw-r--r-- 1 rafael staff README.md`);
-              appendLine(`-rw-r--r-- 1 rafael staff meta.json`);
-              if (projectsData[currentDir].image || projectsData[currentDir].video) {
-                appendLine(`-rw-r--r-- 1 rafael staff preview_media`);
-              }
-            }
-            break;
-
-          case "cd":
-            if (!arg || arg === "~" || arg === "/" || arg === "..") {
-              currentDir = "root";
-              updatePrompt();
-              appendLine(`Returned to <span style="color:#ff00ff;">~/projects</span>`);
-            } else {
-              // Case-insensitive directory matching
-              const matchedKey = projectKeys.find(
-                k => k.toLowerCase() === arg.toLowerCase() || k.toLowerCase() === arg.replace(/^.\//, '').toLowerCase()
-              );
-
-              if (matchedKey) {
-                currentDir = matchedKey;
-                updatePrompt();
-                const p = projectsData[matchedKey];
-                
-                // Render Project overview inside terminal
-                let infoHtml = `<div>`;
-                infoHtml += `<div style="font-size:1.1em; font-weight:bold; color:#ff00ff;">[${matchedKey}]</div>`;
-                infoHtml += `<div style="font-size:0.85em; color:#8a8a8a; margin-bottom:0.4rem;">TAG: ${p.badge}</div>`;
-                infoHtml += `<div style="color:#c6c6c6; margin-bottom:0.5rem;">${p.desc}</div>`;
-
-                if (p.image) {
-                  infoHtml += `<div style="margin:0.5rem 0;"><img src="${p.image}" style="max-width:100%; max-height:180px; border:1px solid #3a3a3a;" /></div>`;
-                } else if (p.video) {
-                  infoHtml += `<div style="margin:0.5rem 0;"><video autoplay muted loop playsinline style="max-width:100%; max-height:180px; border:1px solid #3a3a3a;"><source src="${p.video}" type="video/mp4"></video></div>`;
-                }
-
-                infoHtml += `<div class="term-quick-btns">`;
-                infoHtml += `<span class="term-quick-btn" onclick="termOpenLink('${p.link}')">&#8599; Open Link</span>`;
-                infoHtml += `<span class="term-quick-btn" onclick="termCd('..')">&#8592; Back to projects</span>`;
-                infoHtml += `</div>`;
-                infoHtml += `</div>`;
-
-                appendLine(infoHtml);
-              } else {
-                appendLine(`<span style="color:#ff5555;">cd: no such directory: ${arg}</span>`);
-                appendLine(`Type <span style="color:#ff00ff;">ls</span> to view available project directories.`);
-              }
-            }
-            break;
-
-          case "cat":
-            if (currentDir === "root") {
-              appendLine(`cat: please specify a file or cd into a directory first.`);
-            } else {
-              const p = projectsData[currentDir];
-              appendLine(`<div style="color:#a8a8a8;"># ${currentDir} (${p.badge})</div>`);
-              appendLine(`<div>${p.desc}</div>`);
-              appendLine(`<div style="color:#8a8a8a;">URL: <a href="${p.link}" target="_blank" class="term-link">${p.link}</a></div>`);
-            }
-            break;
-
-          case "open":
-            if (currentDir === "root") {
-              appendLine(`open: select a project directory first using <span style="color:#ff00ff;">cd &lt;project&gt;</span>.`);
-            } else {
-              const p = projectsData[currentDir];
-              window.open(p.link, "_blank");
-              appendLine(`Opening ${p.link}...`);
-            }
-            break;
-
-          case "pwd":
-            appendLine(currentDir === "root" ? "/home/rafael/projects" : `/home/rafael/projects/${currentDir}`);
-            break;
-
-          case "clear":
-            outputEl.innerHTML = "";
-            break;
-
-          default:
-            appendLine(`command not found: ${cmd}. Type <span style="color:#ff00ff;">help</span> for commands.`);
-            break;
-        }
-      }
-
-      // Input keyboard listener
-      inputEl.addEventListener("keydown", function(e) {
-        if (e.key === "Enter") {
-          const val = inputEl.value;
-          if (val.trim()) {
-            history.push(val);
-            historyIdx = history.length;
-          }
-          processCommand(val);
-          inputEl.value = "";
-        } else if (e.key === "ArrowUp") {
-          if (history.length > 0 && historyIdx > 0) {
-            historyIdx--;
-            inputEl.value = history[historyIdx];
-          }
-          e.preventDefault();
-        } else if (e.key === "ArrowDown") {
-          if (historyIdx < history.length - 1) {
-            historyIdx++;
-            inputEl.value = history[historyIdx];
-          } else {
-            historyIdx = history.length;
-            inputEl.value = "";
-          }
-          e.preventDefault();
-        } else if (e.key === "Tab") {
-          e.preventDefault();
-          const val = inputEl.value.trim();
-          if (val.startsWith("cd ")) {
-            const arg = val.substring(3).toLowerCase();
-            const matches = projectKeys.filter(k => k.toLowerCase().startsWith(arg));
-            if (matches.length === 1) {
-              inputEl.value = `cd ${matches[0]}`;
-            } else if (matches.length > 1) {
-              appendLine(`<span class="term-dim">Suggestions: ${matches.join("  ")}</span>`);
-            }
-          }
-        }
-      });
-
-      renderWelcome();
-      updatePrompt();
-    })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

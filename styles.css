@@ -1,0 +1,778 @@
+/* ==========================================================================
+   1. VARIABLES & RESET
+   ========================================================================== */
+:root {
+  --bg-color: #ffffff;
+  --text-main: #222222;
+  --text-muted: #666666;
+  --text-light: #888888;
+  --border-color: #e5e5e5;
+  --accent-color: #0055bb;
+  --accent-hover: #003388;
+  --badge-bg: #f0f4f8;
+  --badge-text: #335577;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--accent-hover);
+}
+
+/* ==========================================================================
+   2. MAIN CONTAINER & LAYOUT
+   ========================================================================== */
+.container {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  gap: 3.5rem;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   3. SIDEBAR & NAVIGATION
+   ========================================================================== */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 2.5rem;
+  height: fit-content;
+}
+
+.profile {
+  margin-bottom: 1.25rem;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 0.3rem;
+}
+
+.affiliation {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.location {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+}
+
+.email-text {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  margin-top: 0.5rem;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.bio {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.link-btn {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  background-color: #f5f5f5;
+  color: var(--text-main);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.link-btn:hover {
+  background-color: #eaeaea;
+  text-decoration: none;
+}
+
+.plain-email {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  background-color: #f5f5f5;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  word-break: break-all;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+}
+
+.nav-menu.hidden {
+  display: none;
+}
+
+.nav-menu a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   4. PERSONA SWITCHER & SECTIONS
+   ========================================================================== */
+.tab-container {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.tab-button {
+  background: #f8f9fa;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  color: var(--text-main);
+  border-color: var(--text-light);
+}
+
+.tab-button.active {
+  background: var(--text-main);
+  color: #ffffff;
+  border-color: var(--text-main);
+}
+
+.view-pane {
+  display: none;
+}
+
+.view-pane.active {
+  display: block;
+}
+
+.section-about {
+  margin-bottom: 2rem;
+}
+
+.section-about h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--text-main);
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
+
+.section {
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2.5rem;
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.section h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--text-main);
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
+
+.section-intro {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   5. TIMELINE / EXPERIENCE
+   ========================================================================== */
+.timeline-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.time-meta {
+  width: 160px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-light);
+  padding-top: 0.15rem;
+  font-family: var(--font-mono);
+}
+
+.time-body h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.time-body h3 span {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.time-sub {
+  font-size: 0.825rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.time-body ul {
+  padding-left: 1.2rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.time-body li {
+  margin-bottom: 0.3rem;
+}
+
+/* ==========================================================================
+   6. PROJECTS
+   ========================================================================== */
+.project-card {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.25rem;
+  align-items: flex-start;
+}
+
+.project-media-wrapper {
+  width: 180px;
+  height: 120px;
+  flex-shrink: 0;
+  background-color: #f9f9f9;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.project-info {
+  flex: 1;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.project-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 0.7rem;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.project-tags {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.project-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.project-links a {
+  font-size: 0.825rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   7. EVENTS & BLOG
+   ========================================================================== */
+.event-card {
+  margin-bottom: 2.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #fdfdfd;
+}
+
+.event-media-large {
+  width: 100%;
+  max-height: 480px;
+  background-color: #f0f0f0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.placeholder-media-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.event-info {
+  padding: 1.25rem;
+}
+
+.event-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.event-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog-item {
+  border-left: 2px solid var(--border-color);
+  padding-left: 1rem;
+}
+
+.blog-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0.15rem 0 0.3rem;
+}
+
+.blog-excerpt {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   8. CREATIVE WRITING & PUBLICATIONS LIST
+   ========================================================================== */
+.pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pub-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pub-list li > .pub-date {
+  width: 125px; 
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap; 
+  padding-top: 0.15rem; 
+}
+
+.pub-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  display: grid;
+  grid-template-columns: 105px 65px 65px;
+  align-items: center;
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.pub-date {
+  font-weight: 500; 
+  color: var(--text-muted, #555);
+}
+
+.pub-tag {
+  color: var(--text-muted, #666);
+}
+
+.pub-lang {
+  color: var(--text-light, #888);
+}
+
+.pub-text {
+  flex-grow: 1;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.pub-text a {
+  color: #0056b3;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.pub-text a:hover {
+  text-decoration: underline;
+  color: #003366;
+}
+
+.pub-sub {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.creative-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.creative-card {
+  padding: 1.25rem;
+  background: #fafafa;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.creative-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0.4rem 0 0.3rem;
+}
+
+.creative-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.read-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   9. POEM READER MODAL & POETRY TYPOGRAPHY
+   ========================================================================== */
+.poem-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 3rem 1.5rem;
+}
+
+.poem-modal.hidden {
+  display: none;
+}
+
+.poem-modal-content {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.close-poem-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 2.5rem;
+  padding: 0;
+}
+
+.close-poem-btn:hover {
+  text-decoration: underline;
+}
+
+.poem-reading-view {
+  font-family: Georgia, serif;
+  line-height: 1.8;
+}
+
+.poem-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0.5rem 0 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.poem-sub {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  margin-bottom: 2rem;
+}
+
+.poem-text {
+  font-size: 1.05rem;
+  color: #333333;
+  white-space: pre-wrap;
+  tab-size: 8;
+  line-height: 1.9;
+}
+
+.poem-numeral {
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.poem-prose-justified {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.poem-epigraph {
+  margin: 0.4rem 0 2rem 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-color, #ccc);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--text-muted, #555);
+}
+
+.poem-epigraph cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--text-light, #777);
+}
+
+/* ==========================================================================
+   10. SKILLS GRID
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.skill-group h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.skill-group p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+.footer {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   12. MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    gap: 2rem;
+  }
+  .sidebar {
+    width: 100%;
+    position: static;
+  }
+  .tab-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .project-card {
+    flex-direction: column;
+  }
+  .project-media-wrapper {
+    width: 100%;
+    height: 180px;
+  }
+  .timeline-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .pub-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  .pub-meta {
+    width: auto;
+    display: flex;
+    gap: 0.6rem;
+  }
+}
+
+/* ==========================================================================
+   12. EVENTS
+   ========================================================================== */
+.event-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.event-links .link-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  background-color: #f5f5f5;
+  color: var(--text-main);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  transition: all 0.15s ease;
+}
+
+.event-links .link-btn:hover {
+  background-color: #eaeaea;
+  border-color: var(--text-light);
+  text-decoration: none;
+}
