@@ -5,23 +5,19 @@ function switchView(mode) {
   const creativeBtn = document.getElementById('tab-creative-btn');
   const navSwe = document.getElementById('nav-swe');
   const navCreative = document.getElementById('nav-creative');
-  
+
   const aboutText = document.getElementById('about-text');
 
   if (mode === 'creative') {
-    // Show Creative View
     sweView.classList.remove('active');
     creativeView.classList.add('active');
     sweBtn.classList.remove('active');
     creativeBtn.classList.add('active');
-
-    // Toggle Sidebar Navigation
     navSwe.classList.add('hidden');
     navCreative.classList.remove('hidden');
 
-    // Update ONLY the About description text
     aboutText.innerHTML = `
-      On other days when I am not programming, I still write, albeit English and Tagalog poetry, 
+      On other days when I am not programming, I still write, albeit English and Tagalog poetry.
       Now a senior editor, I was formerly the Poetry Editor for <strong>Malate Literary Folio</strong>, 
       De La Salle University's Official Literary and Visual Arts Publication. I currently lead
       a small poetry writing group comprised of poets from various organizations like <strong> Linangan sa Imahen,
@@ -34,7 +30,6 @@ function switchView(mode) {
     sweView.classList.add('active');
     creativeBtn.classList.remove('active');
     sweBtn.classList.add('active');
-
     navCreative.classList.add('hidden');
     navSwe.classList.remove('hidden');
 
@@ -271,7 +266,6 @@ function openPoem(id) {
   const modal = document.getElementById('poem-modal');
   const poemBody = document.getElementById('poem-body');
 
-  // If poem uses HTML elements (isHtml), render directly; otherwise convert \n to <br>
   const formattedContent = poem.isHtml 
     ? poem.content 
     : poem.content.replace(/\n/g, '<br>');
