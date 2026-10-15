@@ -274,7 +274,6 @@ function openPoem(id) {
     <article class="poem-reading-view">
       <span class="pub-date">${poem.subtitle || ''}</span>
       <h1 class="poem-title">${poem.title}</h1>
-      <p class="poem-sub">Ni ${poem.author}</p>
       <div class="poem-text">${formattedContent}</div>
     </article>
   `;
@@ -309,4 +308,102 @@ if (themeToggleBtn) {
     localStorage.setItem('theme', newTheme);
     themeToggleBtn.textContent = isDark ? 'Dark' : 'Light';
   });
+}
+
+// Open Universal Media Lightbox (Images & Videos)
+function openMediaModal(element) {
+  const modal = document.getElementById('media-modal');
+  const imgDisplay = document.getElementById('modal-img-display');
+  const videoDisplay = document.getElementById('modal-video-display');
+  const iframeDisplay = document.getElementById('modal-iframe-display');
+  const caption = document.getElementById('modal-caption');
+
+  if (!modal) return;
+
+  // Reset display states
+  imgDisplay.style.display = 'none';
+  videoDisplay.style.display = 'none';
+  iframeDisplay.style.display = 'none';
+  videoDisplay.pause();
+  iframeDisplay.src = '';
+
+  // Check for video sources
+  const videoSrc = element.getAttribute('data-video');
+  const videoChild = element.querySelector('video');
+
+  // Check for iframe/embed sources
+  const embedSrc = element.getAttribute('data-embed');
+
+  // Check for image element inside wrapper or as the element itself
+  const imgChild = element.tagName === 'IMG' ? element : element.querySelector('img');
+
+  if (videoSrc || videoChild) {
+    // 1. HTML5 Video
+    const src = videoSrc || videoChild.querySelector('source')?.src || videoChild.src;
+    videoDisplay.src = src;
+    videoDisplay.style.display = 'block';
+    videoDisplay.play();
+    if (caption) caption.textContent = element.getAttribute('data-caption') || videoChild.alt || '';
+  } else if (embedSrc) {
+    // 2. Embedded Video Frame
+    iframeDisplay.src = embedSrc;
+    iframeDisplay.style.display = 'block';
+    if (caption) caption.textContent = element.getAttribute('data-caption') || '';
+  } else if (imgChild) {
+    // 3. Image Element
+    imgDisplay.src = imgChild.src;
+    imgDisplay.style.display = 'block';
+    if (caption) caption.textContent = element.getAttribute('data-caption') || imgChild.alt || '';
+  }
+
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden'; // Lock background scrolling
+}
+
+// Close Lightbox
+function closeMediaModal() {
+  const modal = document.getElementById('media-modal');
+  const videoDisplay = document.getElementById('modal-video-display');
+  const iframeDisplay = document.getElementById('modal-iframe-display');
+
+  if (modal) {
+    if (videoDisplay) videoDisplay.pause();
+    if (iframeDisplay) iframeDisplay.src = '';
+    modal.classList.add('hidden');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+}
+
+// Escape key listener
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMediaModal();
+});
+
+function openNotebookModal(ipynbPath) {
+  const modal = document.getElementById('notebook-modal');
+  const container = document.getElementById('notebook-container');
+
+  container.innerHTML = '<p style="font-family: var(--font-mono); color: var(--text-muted);">Loading notebook...</p>';
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  fetch(ipynbPath)
+    .then(response => response.json())
+    .then(data => {
+      const notebook = nb.parse(data);
+      container.innerHTML = '';
+      container.appendChild(notebook.render());
+    })
+    .catch(err => {
+      container.innerHTML = '<p style="color: red;">Failed to load notebook.</p>';
+      console.error(err);
+    });
+}
+
+function closeNotebookModal() {
+  const modal = document.getElementById('notebook-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
 }

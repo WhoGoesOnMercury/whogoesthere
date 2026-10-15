@@ -6,6 +6,10 @@
   <title>Rafael Enrico Hugo — Portfolio</title>
   <link rel="icon" type="image/x-icon" href="gl-rayner.ico">
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Markdown parser + NotebookJS Renderer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/notebookjs@0.6.7/notebook.min.js"></script>
 </head>
 <body>
 
@@ -134,15 +138,15 @@
                 Designed projection mapping and paper tracking using OpenCV and OCR libraries under the Human-X Interactions Lab.
               </p>
               <div class="project-links">
-                <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer">Code &rarr;</a>
+                <a href="https://github.com/dlsucomet/LineAR" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
               </div>
             </div>
           </div>
 
           <!-- LasallEats -->
           <div class="project-card">
-            <div class="project-media-wrapper">
-              <img src="media/images/Lasalleats.png" alt="LasallEats" class="project-img" />
+            <div class="project-media-wrapper" onclick="openMediaModal(this)">
+              <img src="media/images/LasallEats-2.png" alt="LasallEats Interface" class="project-img" />
             </div>
             <div class="project-info">
               <div class="project-header">
@@ -164,7 +168,7 @@
 
           <!-- Distributed System -->
           <div class="project-card">
-            <div class="project-media-wrapper">
+            <div class="project-media-wrapper" onclick="openMediaModal(this)">
               <img src="media/images/Fault_tolerance.png" alt="Fault-Tolerant Distributed System" class="project-img" />
             </div>
             <div class="project-info">
@@ -179,14 +183,34 @@
                 Docker was utilized to simulate component unavailability. 
               </p>
               <div class="project-links">
-                <a href="https://github.com/WhoGoesOnMercury" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
+                <a href="https://github.com/WhoGoesOnMercury/ST-Distributed-Computing/tree/main/Fault-Tolerance" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-media-wrapper" onclick="openMediaModal(this)">
+              <img src="media/images/Monopoly.png" alt="Monopoly" class="project-img" />
+            </div>
+            <div class="project-info">
+              <div class="project-header">
+                <h3 class="project-title">Monopoly</h3>
+                <span class="badge">Academic Project</span>
+              </div>
+              <p class="project-tags">C, Pointers, Data Structures</p>
+              <p class="project-desc">
+                Custom implementation of the Monopoly boardgame using C99. It has pointer-driven state management for players,
+                properties, and game flow. Made to be played by two individuals and run in the terminal.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Monopoly" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
               </div>
             </div>
           </div>
 
           <!-- Algorithms in C -->
           <div class="project-card">
-            <div class="project-media-wrapper">
+            <div class="project-media-wrapper" data-caption="C Algorithm Demo" onclick="openMediaModal(this)">
               <video autoplay muted loop playsinline class="project-img">
                 <source src="media/videos/C_algo.mp4" type="video/mp4">
               </video>
@@ -201,11 +225,24 @@
                 Implemented fundamental data structures and sorting algorithms from scratch in low-level C with multi-threading and documented analysis.
               </p>
               <div class="project-links">
-                <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Data-structures-and-algorithms/Sorting-algorithms" target="_blank" rel="noopener noreferrer">Code &rarr;</a>
+                <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Data-structures-and-algorithms" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
               </div>
             </div>
           </div>
         </section>
+
+        <div id="media-modal" class="media-modal hidden" onclick="closeMediaModal()">
+          <div class="media-modal-content" onclick="event.stopPropagation()">
+            <button class="close-media-btn" onclick="closeMediaModal()">&times; Close</button>
+            <img id="modal-img-display" src="" alt="" style="display: none;" />
+            <video id="modal-video-display" controls style="display: none;">
+              <source src="" type="video/mp4" />
+              Your browser does not support HTML5 video.
+            </video>
+            <iframe id="modal-iframe-display" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+            <p id="modal-caption" class="media-modal-caption"></p>
+          </div>
+        </div>
 
         <!-- Publications & Honors -->
         <section id="publications" class="section">

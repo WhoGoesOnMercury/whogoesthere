@@ -895,3 +895,154 @@ a:hover {
     text-align: center;
   }
 }
+
+/* ==========================================================================
+   13. IMAGE LIGHTBOX MODAL
+   ========================================================================== */
+.project-media-wrapper {
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-media-wrapper:hover {
+  transform: scale(1.02);
+  border-color: var(--accent-color);
+}
+
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.image-modal.hidden {
+  display: none;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-image-btn {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.close-image-btn:hover {
+  text-decoration: underline;
+}
+
+#modal-img-display {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.image-modal-caption {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #dddddd;
+  text-align: center;
+}
+
+/* ==========================================================================
+   14. MEDIA LIGHTBOX MODAL (IMAGES & VIDEOS)
+   ========================================================================== */
+.media-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.88);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+}
+
+.media-modal.hidden {
+  display: none;
+}
+
+.media-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-media-btn {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.close-media-btn:hover {
+  text-decoration: underline;
+}
+
+/* Video Elements Styling */
+#modal-video-display {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 4px;
+  background-color: #000;
+  outline: none;
+}
+
+#modal-iframe-display {
+  width: 80vw;
+  height: 45vw; /* 16:9 Aspect Ratio */
+  max-width: 900px;
+  max-height: 506px;
+  border-radius: 4px;
+  background-color: #000;
+}
+
+.media-modal-caption {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #dddddd;
+  text-align: center;
+}
