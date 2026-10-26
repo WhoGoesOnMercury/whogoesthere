@@ -23,7 +23,7 @@ function switchView(mode) {
       a small poetry writing group comprised of poets from various organizations like <strong> Linangan sa Imahen,
       Retorika, at Anyo (LIRA), Heights Ateneo, and Thomasian Writers' Guild. </strong>
       <br> <br>
-      When I finally let go of the keyboard and my pen, only then will I pick up my guitar or spread open a book.
+      I am also a guitarist in my free time. I played Rhythm back then for my high school band. 
     `;
   } else {
     creativeView.classList.remove('active');
@@ -36,8 +36,7 @@ function switchView(mode) {
     aboutText.innerHTML = `
       I am a Computer Science student at De La Salle University specializing in Human-Computer Interactions, artificial intelligence, and software engineering. 
       As a researcher at the <strong>Human-X Interactions Lab</strong>, I co-develop augmented reality training systems 
-      and explore interactive interface design. My work spans backend development, software quality assurance, 
-      and applied AI—including co-authoring <strong>LasallEats</strong>, presented and published at the <strong>IEEE FMLDS 2025</strong>.
+      and explore interactive interface design. I co-authored <strong>LasallEats</strong> which was presented and published at the <strong>IEEE FMLDS 2025</strong>.
     `;
   }
 }
