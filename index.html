@@ -70,6 +70,10 @@
           I am a Computer Science student at De La Salle University specializing in Human-Computer Interactions, artificial intelligence, and software engineering. 
           As a researcher at the <strong>Human-X Interactions Lab</strong>, I co-develop augmented reality training systems 
           and explore interactive interface design. I co-authored <strong>LasallEats</strong> which was presented and published at the <strong>IEEE FMLDS 2025</strong>.
+          <br> <br>
+          In addition to software engineering, I specialize in data analysis, applied statistics, and quantitative modeling. My academic experience heavily 
+          emphasized data preprocessing and postprocessing, statistical analysis, and data interpretation, spanning both predictive model development and 
+          outcome-driven insights. I also conduct thematic analysis for qualitative data, usually extracting structured patterns and insights from textual sources.
         </p>
       </section>
 
@@ -123,8 +127,8 @@
 
           <!-- LineAR -->
           <div class="project-card">
-            <div class="project-media-wrapper">
-              <div class="placeholder-media">LineAR Preview</div>
+            <div class="project-media-wrapper" onclick="openMediaModal(this)">
+              <img src="media/images/LineAR-2.png" alt="LineAR" class="project-img" />
             </div>
             <div class="project-info">
               <div class="project-header">
@@ -134,7 +138,8 @@
               <p class="project-tags">Python, Augmented Reality, Computer Vision, HCI, OpenCV, OCR</p>
               <p class="project-desc">
                 Developed an interactive augmented reality training system for guided linear algebra learning using augmented reality. 
-                Designed projection mapping and paper tracking using OpenCV and OCR libraries under the Human-X Interactions Lab.
+                Designed projection mapping and paper tracking using OpenCV and OCR libraries under the supervision of 
+                <a href="https://jrdndj.notion.site/"> Dr. Jordan Deja </a> from the Human-X Interactions Lab.
               </p>
               <div class="project-links">
                 <a href="https://github.com/dlsucomet/LineAR" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
@@ -155,8 +160,8 @@
               <p class="project-tags">Python, Gemini 2.5 Pro, Artificial Intelligence, Prompt Engineering</p>
               <p class="project-desc">
                 Developed an empathic restaurant recommendation system for DLSU Manila students utilizing Gemini 2.5 Pro with custom prompt engineering relative to user context. 
-                Makes use of randomly chosen and set images to extract a user's emotions to cater recommendations.
-                Published and presented at IEEE FMLDS 2025.
+                Makes use of randomly chosen and set images to extract a user's emotions to cater recommendations. Published and presented at IEEE FMLDS 2025 under the guidance
+                of <a href="https://scholar.google.com/citations?user=UEMd7x4AAAAJ&hl=en"> Dr. Norshuhani Zamin</a>.
               </p>
               <div class="project-links">
                 <a href="https://www.researchgate.net/publication/403145731_LasallEats_A_Restaurant_Recommendation_System_Mobile_App_for_DLSU_Manila_Students" target="_blank" rel="noopener noreferrer">ResearchGate &rarr;</a> &nbsp;|&nbsp;
@@ -165,24 +170,71 @@
             </div>
           </div>
 
-          <!-- Distributed System -->
+          <!-- Producer-Consumer -->
           <div class="project-card">
             <div class="project-media-wrapper" onclick="openMediaModal(this)">
-              <img src="media/images/Fault_tolerance.png" alt="Fault-Tolerant Distributed System" class="project-img" />
+              <img src="media/images/Producer-Consumer.png" alt="Producer-Consumer" class="project-img" />
             </div>
             <div class="project-info">
               <div class="project-header">
-                <h3 class="project-title">Fault-Tolerant Distributed System</h3>
+                <h3 class="project-title">Distributed Producer-Consumer Pipeline</h3>
                 <span class="badge">Academic Project</span>
               </div>
               <p class="project-tags">Go, gRPC, Protocol Buffers, Git, Docker</p>
               <p class="project-desc">
-                Implemented a distributed system in Go utilizing gRPC for inter-node communication. 
-                Engineered fault-tolerance mechanisms to maintain availability and state consistency during node failures using Protocol Buffers. 
-                Docker was utilized to simulate component unavailability. 
+                Implemented a distributed video streaming pipeline in Go using gRPC and Protocol Buffers for high-throughput 
+                inter-node communication. Designed a Producer-Consumer pattern that chunks and streams data for instant video 
+                playback during active uploads, containerized with Docker to simulate multi-server nodes.
               </p>
               <div class="project-links">
-                <a href="https://github.com/WhoGoesOnMercury/ST-Distributed-Computing/tree/main/Fault-Tolerance" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
+                <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/Go/Producer-Consumer" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-media-wrapper" onclick="openMediaModal(this)">
+              <img src="media/images/Wage_prediction.png" alt="Wage Prediction Model Analysis" class="project-img" />
+            </div>
+            <div class="project-info">
+              <div class="project-header">
+                <h3 class="project-title">Wage Prediction Model Analysis</h3>
+                <span class="badge">Academic Project</span>
+              </div>
+              <p class="project-tags">Python, Data Modeling, Supervised Learning, Artificial Intelligence</p>
+              <p class="project-desc">
+                Evaluated supervised machine learning algorithms to predict individual wages using demographic data, 
+                educational and industry background, and work hours. Built and tuned linear models (Linear, Ridge, Lasso, SGD), 
+                Naive Bayes classifiers, and K-Nearest Neighbors using Scikit-Learn and Hyperparameter Optimization via GridSearchCV.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/prynetopg777/MP-FOR-STINTSY/blob/main/STINTSY_S18_Group3_MP.ipynb" target="_blank" rel="noopener noreferrer">Notebook &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-media-wrapper" onclick="openMediaModal(this)">
+              <img src="media/images/Automata.png" alt="Cellular Automata Case Study" class="project-img" />
+            </div>
+            <div class="project-info">
+              <div class="project-header">
+                <h3 class="project-title">Cellular Automata Case Study</h3>
+                <span class="badge">Academic Project</span>
+              </div>
+              <p class="project-tags">  JavaScript, Cellular Automata, Formal Languages, Theory of Computation </p>
+              <p class="project-desc">
+                Authored a theoretical case study examining von Neumann's and Codd's 2-state cellular automata models. 
+                Evaluated computational universality, formal language classifications within the Chomsky Hierarchy (Type 0 unrestricted grammar), 
+                and real-world complex system simulations including Conway's Game of Life and the Nagel-Schreckenberg freeway traffic model.
+              </p>
+              <div class="project-links">
+                <a href="media/images/Automata.pdf" target="_blank" rel="noopener noreferrer">
+                  View Paper (PDF) &rarr;
+                </a> &nbsp;|&nbsp;
+                <a href="javascript:void(0)" onclick="openSimulatorModal()">
+                  Simulate &rarr;
+                </a>
               </div>
             </div>
           </div>
@@ -196,7 +248,7 @@
                 <h3 class="project-title">Monopoly</h3>
                 <span class="badge">Academic Project</span>
               </div>
-              <p class="project-tags">C, Pointers, Data Structures</p>
+              <p class="project-tags">C, Pointers, Makefile, Rule-based </p>
               <p class="project-desc">
                 Custom implementation of the Monopoly boardgame using C99. It has pointer-driven state management for players,
                 properties, and game flow. Made to be played by two individuals and run in the terminal.
@@ -221,7 +273,9 @@
               </div>
               <p class="project-tags">C, Multi-threading, Sorting Algorithms, Data Structures</p>
               <p class="project-desc">
-                Implemented fundamental data structures and sorting algorithms from scratch in low-level C with multi-threading and documented analysis.
+                Recreated fundamental data structures and sorting algorithms in low-level C based on 
+                <a href="https://ist.mit.edu/node/4329#materials" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">MIT coursework materials</a>. 
+                Built custom implementations and documented each structure and algorithm with algorithmic complexity analysis and runtime benchmarks for sequential execution.
               </p>
               <div class="project-links">
                 <a href="https://github.com/WhoGoesOnMercury/project-bin/tree/main/C/Data-structures-and-algorithms" target="_blank" rel="noopener noreferrer">Repository &rarr;</a>
@@ -243,6 +297,39 @@
           </div>
         </div>
 
+        <div id="simulatorModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
+          <div id="simulatorModalContainer" class="modal-content" style="padding:24px; border-radius:8px; border:1px solid #333; width:90%; max-width:700px; box-shadow:0 10px 30px rgba(0,0,0,0.5); position:relative; font-family:sans-serif;">
+            <button onclick="closeSimulatorModal()" style="position:absolute; top:12px; right:16px; background:none; border:none; color:inherit; font-size:24px; font-weight:bold; cursor:pointer;">&times;</button>
+            
+            <h3 style="margin-top:0; margin-bottom:12px; font-size:18px; font-weight:700;">Elementary Cellular Automata Simulator</h3>
+            
+            <div style="margin-bottom:16px; font-size:14px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+              <label style="display:flex; align-items:center; gap:6px; font-weight:600;">
+                Rule: 
+                <input 
+                  type="number" 
+                  id="ruleInput" 
+                  min="0" 
+                  max="255" 
+                  value="30" 
+                  onchange="updateRuleFromInput()" 
+                  oninput="updateRuleFromInput()" 
+                  style="background:#1a1a1a !important; color:#ffffff !important; border:1px solid #555 !important; border-radius:4px; padding:4px 8px; width:65px; font-family:monospace; font-size:14px;" 
+                />
+              </label>
+              <span style="opacity:0.4;">|</span>
+              <div>Binary: <span id="binaryRepresentation" style="font-family:monospace; font-weight:bold;">--------</span></div>
+            </div>
+
+            <canvas id="canvas" width="600" height="300" style="border:1px solid #444; display:block; margin:0 auto; width:100%; height:auto;"></canvas>
+
+            <div style="margin-top:16px; display:flex; gap:10px; justify-content:flex-end;">
+              <button id="simRandomBtn" onclick="randomizeRule()" style="padding:8px 16px; background:#222222 !important; color:#ffffff !important; border:1px solid #555 !important; border-radius:4px; font-weight:600; cursor:pointer;">Random Rule</button>
+              <button id="simCloseBtn" onclick="closeSimulatorModal()" style="padding:8px 16px; background:#ffffff !important; color:#000000 !important; border:1px solid #ffffff !important; border-radius:4px; font-weight:600; cursor:pointer;">Close</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Publications & Honors -->
         <section id="publications" class="section">
           <h2>Publications & Honors</h2>
@@ -250,7 +337,8 @@
             <li>
               <span class="pub-date">March 2026</span>
               <div class="pub-text">
-                <strong>Career Service Professional Examination Passer</strong> &mdash; Passed with a rating of <strong>92.74%</strong>, 
+                <strong>Career Service Professional Examination Passer</strong> &mdash; Passed with an overall rating of <strong>92.74%</strong>, 
+                with a <strong>98.89%</strong> in the <strong>Numerical Ability</strong> subject area.
               </div>
             </li>
             <li>
@@ -264,26 +352,30 @@
 
         <!-- Technical Skills -->
         <section id="skills" class="section">
-          <h2>Technical Skills</h2>
-          <div class="skills-grid">
-            <div class="skill-group">
-              <h4>Languages</h4>
-              <p>Go, Python, C/C++, SQL, JavaScript, TypeScript, Assembly</p>
-            </div>
-            <div class="skill-group">
-              <h4>Frameworks & Protocols</h4>
-              <p>gRPC, Protocol Buffers, Express.js, Node.js, Flask</p>
-            </div>
-            <div class="skill-group">
-              <h4>Testing & QA</h4>
-              <p>Jest, Selenium, Playwright, Vitest, Appium</p>
-            </div>
-            <div class="skill-group">
-              <h4>DevOps & Tools</h4>
-              <p>Git, Docker, GitHub Actions, AWS, MySQL, SQLite, NoSQL, MongoDB, Jira, ClickUp</p>
-            </div>
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>Languages</h4>
+            <p>Go, Python, C/C++, Java, SQL, R, JavaScript, TypeScript, x86-64 Assembly</p>
           </div>
-        </section>
+          <div class="skill-group">
+            <h4>Data & Analytics</h4>
+            <p>Pandas, NumPy, Applied Statistics, Quantitative Modeling, Data Preprocessing/Postprocessing, Thematic Analysis, Jamovi</p>
+          </div>
+          <div class="skill-group">
+            <h4>Frameworks & Protocols</h4>
+            <p>gRPC, Protocol Buffers, Express.js, Node.js, Flask</p>
+          </div>
+          <div class="skill-group">
+            <h4>Testing & QA</h4>
+            <p>Jest, Selenium, Playwright, Vitest, Appium</p>
+          </div>
+          <div class="skill-group">
+            <h4>DevOps & Tools</h4>
+            <p>Git, Docker, GitHub Actions, AWS, MySQL, SQLite, NoSQL, MongoDB, Jira, ClickUp</p>
+          </div>
+        </div>
+      </section>
 
       </div>
 

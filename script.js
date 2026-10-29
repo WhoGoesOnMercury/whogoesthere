@@ -37,6 +37,10 @@ function switchView(mode) {
       I am a Computer Science student at De La Salle University specializing in Human-Computer Interactions, artificial intelligence, and software engineering. 
       As a researcher at the <strong>Human-X Interactions Lab</strong>, I co-develop augmented reality training systems 
       and explore interactive interface design. I co-authored <strong>LasallEats</strong> which was presented and published at the <strong>IEEE FMLDS 2025</strong>.
+      <br> <br>
+      In addition to software engineering, I specialize in data analysis, applied statistics, and quantitative modeling. My academic experience heavily 
+      emphasized data preprocessing and postprocessing, statistical analysis, and data interpretation, spanning both predictive model development and 
+      outcome-driven insights. I also conduct thematic analysis for qualitative data, usually extracting structured patterns and insights from textual sources.
     `;
   }
 }
@@ -405,4 +409,148 @@ function closeNotebookModal() {
     modal.classList.add('hidden');
     document.body.style.overflow = '';
   }
+}
+
+/* ==========================================================================
+   Elementary Cellular Automata Interactive Canvas Simulator
+   ========================================================================== */
+let simulationFrameId = null;
+let intRand = 30;
+const intRandBinary = [0, 0, 0, 0, 0, 0, 0, 0];
+const cellSize = 4;
+
+function openSimulatorModal() {
+  const modal = document.getElementById('simulatorModal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  const ruleInput = document.getElementById('ruleInput');
+  if (ruleInput) {
+    intRand = Math.max(0, Math.min(255, parseInt(ruleInput.value) || 0));
+  }
+  resetSimulation();
+}
+
+function closeSimulatorModal() {
+  const modal = document.getElementById('simulatorModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  if (simulationFrameId) {
+    cancelAnimationFrame(simulationFrameId);
+    simulationFrameId = null;
+  }
+}
+
+function updateRuleFromInput() {
+  const ruleInput = document.getElementById('ruleInput');
+  if (!ruleInput) return;
+  
+  let val = parseInt(ruleInput.value);
+  if (isNaN(val)) val = 0;
+  val = Math.max(0, Math.min(255, val));
+  
+  intRand = val;
+  resetSimulation();
+}
+
+function randomizeRule() {
+  intRand = Math.floor(Math.random() * 256);
+  const ruleInput = document.getElementById('ruleInput');
+  if (ruleInput) ruleInput.value = intRand;
+  resetSimulation();
+}
+
+function resetSimulation() {
+  const binElem = document.getElementById('binaryRepresentation');
+
+  for (let i = 0; i < 8; i++) {
+    intRandBinary[i] = (intRand >> (7 - i)) & 1;
+  }
+
+  if (binElem) binElem.textContent = intRandBinary.join('');
+
+  const canvas = document.getElementById('canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const numCols = Math.floor(canvas.width / cellSize);
+  let cells = [new Array(numCols).fill(0)];
+  cells[0][Math.floor(numCols / 2)] = 1;
+  let generation = 0;
+
+  if (simulationFrameId) {
+    cancelAnimationFrame(simulationFrameId);
+  }
+
+  // Detect dark vs light theme
+  const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+  const bgColor = isDarkMode ? "#000000" : "#ffffff";
+  const cellColor = isDarkMode ? "#ffffff" : "#000000";
+
+  // Elements
+  const modalContainer = document.getElementById('simulatorModalContainer');
+  const ruleInput = document.getElementById('ruleInput');
+  const randomBtn = document.getElementById('simRandomBtn');
+  const closeBtn = document.getElementById('simCloseBtn');
+
+  if (modalContainer) {
+    modalContainer.style.background = isDarkMode ? "#111111" : "#ffffff";
+    modalContainer.style.color = isDarkMode ? "#ffffff" : "#000000";
+    modalContainer.style.borderColor = isDarkMode ? "#333333" : "#000000";
+  }
+
+  if (ruleInput) {
+    ruleInput.style.setProperty('background', isDarkMode ? '#222222' : '#ffffff', 'important');
+    ruleInput.style.setProperty('color', isDarkMode ? '#ffffff' : '#000000', 'important');
+    ruleInput.style.setProperty('border-color', isDarkMode ? '#555555' : '#000000', 'important');
+  }
+
+  if (randomBtn) {
+    randomBtn.style.setProperty('background', isDarkMode ? '#222222' : '#f0f0f0', 'important');
+    randomBtn.style.setProperty('color', isDarkMode ? '#ffffff' : '#000000', 'important');
+    randomBtn.style.setProperty('border-color', isDarkMode ? '#555555' : '#000000', 'important');
+  }
+
+  if (closeBtn) {
+    closeBtn.style.setProperty('background', isDarkMode ? '#ffffff' : '#000000', 'important');
+    closeBtn.style.setProperty('color', isDarkMode ? '#000000' : '#ffffff', 'important');
+    closeBtn.style.setProperty('border-color', isDarkMode ? '#ffffff' : '#000000', 'important');
+  }
+
+  function applyRule(left, center, right) {
+    const idx = 7 - ((left << 2) | (center << 1) | right);
+    return intRandBinary[idx];
+  }
+
+  function runSimulation() {
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = cellColor;
+    for (let row = 0; row < generation; row++) {
+      for (let col = 0; col < numCols; col++) {
+        if (cells[row][col]) {
+          ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    if (generation * cellSize < canvas.height) {
+      cells.push(new Array(numCols).fill(0));
+      for (let i = 0; i < numCols; i++) {
+        let left = cells[generation][i - 1] || 0;
+        let center = cells[generation][i] || 0;
+        let right = cells[generation][i + 1] || 0;
+        cells[generation + 1][i] = applyRule(left, center, right);
+      }
+      generation++;
+    }
+
+    simulationFrameId = requestAnimationFrame(runSimulation);
+  }
+
+  runSimulation();
 }
