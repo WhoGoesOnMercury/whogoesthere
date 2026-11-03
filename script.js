@@ -17,11 +17,14 @@ function switchView(mode) {
     navCreative.classList.remove('hidden');
 
     aboutText.innerHTML = `
+      Occassionally, I design interface mockups using <strong>Figma</strong> 
+      and create 3D Models using <strong>Blender</strong>.
+      <br> <br>
       On other days when I am not programming, I still write, albeit English and Tagalog poetry.
       Now a senior editor, I was formerly the Poetry Editor for <strong>Malate Literary Folio</strong>, 
-      De La Salle University's Official Literary and Visual Arts Publication. I currently lead
-      a small poetry writing group comprised of poets from various organizations like <strong> Linangan sa Imahen,
-      Retorika, at Anyo (LIRA), Heights Ateneo, and Thomasian Writers' Guild. </strong>
+      De La Salle University's Official Literary and Visual Arts Publication. I currently lead a small poetry writing group 
+      comprised of poets from various organizations like <strong> Linangan sa Imahen, Retorika, at Anyo (LIRA), Heights Ateneo, 
+      and Thomasian Writers' Guild. </strong>
       <br> <br>
       I am also a guitarist in my free time. I played Rhythm back then for my high school band. 
     `;
