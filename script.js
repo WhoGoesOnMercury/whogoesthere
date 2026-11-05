@@ -17,9 +17,6 @@ function switchView(mode) {
     navCreative.classList.remove('hidden');
 
     aboutText.innerHTML = `
-      Occassionally, I design interface mockups using <strong>Figma</strong> 
-      and create 3D Models using <strong>Blender</strong>.
-      <br> <br>
       On other days when I am not programming, I still write, albeit English and Tagalog poetry.
       Now a senior editor, I was formerly the Poetry Editor for <strong>Malate Literary Folio</strong>, 
       De La Salle University's Official Literary and Visual Arts Publication. I currently lead a small poetry writing group 
